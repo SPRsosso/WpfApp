@@ -14,7 +14,7 @@ namespace Projekt.ModelViews
     {
         public MainWindowModelView()
         {
-            IloczynCommand = new RelayCommand(iloczyn);
+            NWDCommand = new RelayCommand(NWD);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string propertyName)
@@ -31,12 +31,31 @@ namespace Projekt.ModelViews
                 OnPropertyChanged(nameof(Arg1));
             }
         }
-        public ICommand IloczynCommand { get; set; }
-        public void iloczyn(Object obj)
+        public string Arg2
+        {
+            get { return arg2; }
+            set
+            {
+                arg2 = value;
+                OnPropertyChanged(nameof(Arg2));
+            }
+        }
+        public ICommand NWDCommand { get; set; }
+        public void NWD(Object obj)
         {
             try
             {
-
+                while(Arg1 != Arg2)
+                {
+                    if(Arg1 > Arg2)
+                    {
+                        Arg1 = Arg1 - Arg2;
+                    }
+                    if(obj > Arg1)
+                    {
+                        Arg2 = Arg2 - Arg1;
+                    }
+                }
             }
             catch (Exception ex)
             {
